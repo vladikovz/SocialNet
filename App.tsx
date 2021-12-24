@@ -1,9 +1,5 @@
-import React from "react"
+import React from 'react'
 
-export const App= ()=>{
-    return(
-        <section>
-            This is react component
-        </section>
-    )
+export const App = () => {
+    return <section>This is react component</section>
 }
