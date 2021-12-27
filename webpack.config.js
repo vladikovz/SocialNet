@@ -23,10 +23,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js',
+        publicPath: '/',
     },
     devServer: {
         open: true,
         port: 3005,
+        historyApiFallback: true,
     },
     resolve: {
         extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.md'],
