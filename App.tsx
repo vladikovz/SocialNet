@@ -1,5 +1,10 @@
 import React from 'react'
+import { ProfilePage } from './src/pages/ProfilePage'
 
 export const App = () => {
-    return <section>This is react component</section>
+    return (
+        <section>
+            <ProfilePage />
+        </section>
+    )
 }
