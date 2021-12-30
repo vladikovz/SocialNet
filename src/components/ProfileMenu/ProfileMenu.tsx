@@ -3,7 +3,11 @@ import { IconButton, Menu, MenuItem } from '@mui/material'
 import Fade from '@mui/material/Fade'
 import { AccountCircle } from '@mui/icons-material'
 
-export const ProfileMenu = () => {
+interface IProfileMenu {
+    onLogoutClick: () => void
+}
+
+export const ProfileMenu = (props: IProfileMenu) => {
     const [anchorEl, setAnchorEl] = React.useState(null)
     const open = Boolean(anchorEl)
     const handleClick = (event: any) => {
@@ -11,6 +15,10 @@ export const ProfileMenu = () => {
     }
     const handleClose = () => {
         setAnchorEl(null)
+    }
+    const handleLogoutClick = () => {
+        props.onLogoutClick()
+        handleClose()
     }
     return (
         <div>
@@ -36,7 +44,7 @@ export const ProfileMenu = () => {
             >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
             </Menu>
         </div>
     )
