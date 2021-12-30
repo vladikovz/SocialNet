@@ -4,9 +4,13 @@ import { ProfileMenu } from '../ProfileMenu/ProfileMenu'
 import { Navigation } from '../ProfileMenu/Navigation/Navigation'
 import { AuthDialog } from '../AuthDialog/AuthDialog'
 import { HeaderButton } from './HeaderButton/HeaderButton'
+import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
+import { useDispatch } from 'react-redux'
+import { setLogin } from '../../redux/actions'
 
 export const Header = () => {
-    const [login, setLogin] = useState(false)
+    const dispatch = useDispatch()
+    const { login } = useTypedSelector((store) => store.serve)
     const [isDialog, setIsDialog] = useState(false)
 
     const handleClick = () => {
@@ -15,6 +19,15 @@ export const Header = () => {
 
     const handleClose = () => {
         setIsDialog(false)
+    }
+
+    const handleSubmit = () => {
+        dispatch(setLogin(true))
+        handleClose()
+    }
+
+    const handleLogout = () => {
+        dispatch(setLogin(false))
     }
     return (
         <>
@@ -30,7 +43,7 @@ export const Header = () => {
                         </Typography>
                         <Navigation />
                         {login ? (
-                            <ProfileMenu />
+                            <ProfileMenu onLogoutClick={handleLogout} />
                         ) : (
                             <HeaderButton
                                 onClick={handleClick}
@@ -44,6 +57,7 @@ export const Header = () => {
                 isOpen={isDialog}
                 handleClose={handleClose}
                 title={'Log In'}
+                onSubmit={handleSubmit}
             />
         </>
     )

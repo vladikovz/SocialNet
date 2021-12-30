@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import {
+    Button,
     Dialog,
     DialogTitle,
     FormControl,
@@ -13,6 +14,7 @@ interface IAuthDialogProps {
     title: string
     isOpen: boolean
     handleClose: () => void
+    onSubmit: () => void
 }
 
 export const AuthDialog = (props: IAuthDialogProps) => {
@@ -40,6 +42,9 @@ export const AuthDialog = (props: IAuthDialogProps) => {
                         </InputAdornment>
                     }
                 />
+                <Button color={'secondary'} onClick={props.onSubmit}>
+                    Submit
+                </Button>
             </FormControl>
         </Dialog>
     )
