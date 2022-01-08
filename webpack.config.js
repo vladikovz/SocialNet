@@ -31,7 +31,7 @@ module.exports = {
         historyApiFallback: true,
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.md'],
+        extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.md', '.css'],
     },
     plugins: [
         new HTMLWebpackPlugin({
@@ -60,7 +60,30 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                // include: path.join(__dirname, 'src/components'),
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                        },
+                    },
+                    // {
+                    //     loader: 'typings-for-css-modules-loader',
+                    //     options: {
+                    //         modules: true,
+                    //         namedExport: true,
+                    //     },
+                    // },
+                ],
+                include: /\.module\.css$/,
+            },
+            {
+                test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
+                exclude: /\.module\.css$/,
             },
             {
                 test: /\.jsx$/,
