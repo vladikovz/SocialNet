@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom'
 import React from 'react'
-
-export const Navigation = () => {
+interface INavigationProps {
+    login: boolean
+}
+export const Navigation = (props: INavigationProps) => {
     let activeStyle = {
         color: 'red',
         textDecoration: 'none',
@@ -21,30 +23,36 @@ export const Navigation = () => {
 
     return (
         <div style={containerStyle}>
-            <NavLink
-                to="posts"
-                style={({ isActive }) =>
-                    isActive ? activeStyle : inactiveStyle
-                }
-            >
-                Posts
-            </NavLink>
-            <NavLink
-                to="/profile"
-                style={({ isActive }) =>
-                    isActive ? activeStyle : inactiveStyle
-                }
-            >
-                Profile
-            </NavLink>
-            <NavLink
-                to="/photo"
-                style={({ isActive }) =>
-                    isActive ? activeStyle : inactiveStyle
-                }
-            >
-                Photo
-            </NavLink>
+            {props.login ? (
+                <>
+                    <NavLink
+                        to="posts"
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : inactiveStyle
+                        }
+                    >
+                        Posts
+                    </NavLink>
+                    <NavLink
+                        to="/profile"
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : inactiveStyle
+                        }
+                    >
+                        Profile
+                    </NavLink>
+                    <NavLink
+                        to="/photo"
+                        style={({ isActive }) =>
+                            isActive ? activeStyle : inactiveStyle
+                        }
+                    >
+                        Photo
+                    </NavLink>
+                </>
+            ) : (
+                <></>
+            )}
         </div>
     )
 }

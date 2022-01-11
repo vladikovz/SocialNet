@@ -26,14 +26,18 @@ export const AuthDialog = (props: IAuthDialogProps) => {
         setValue(e.target.value)
     }
     return (
-        <Dialog onClose={props.handleClose} open={props.isOpen}>
+        <Dialog
+            onClose={props.handleClose}
+            open={props.isOpen}
+            sx={{
+                '& .MuiFormControl-root': { width: '90%', margin: '0 auto' },
+            }}
+        >
             <DialogTitle>{props.title}</DialogTitle>
             <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-                <InputLabel htmlFor="standard-adornment-amount">
-                    Login
-                </InputLabel>
+                <InputLabel htmlFor="login">Login</InputLabel>
                 <Input
-                    id="standard-adornment-amount"
+                    id="login"
                     value={value}
                     onChange={handleChange}
                     startAdornment={
@@ -42,10 +46,18 @@ export const AuthDialog = (props: IAuthDialogProps) => {
                         </InputAdornment>
                     }
                 />
-                <Button color={'secondary'} onClick={props.onSubmit}>
-                    Submit
-                </Button>
             </FormControl>
+            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input id="password" value={value} onChange={handleChange} />
+            </FormControl>
+            <Button
+                sx={{ margin: '10px' }}
+                color={'secondary'}
+                onClick={props.onSubmit}
+            >
+                Submit
+            </Button>
         </Dialog>
     )
 }

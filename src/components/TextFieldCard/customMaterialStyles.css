@@ -1,0 +1,20 @@
+.MuiTextField-root {
+    background-color: aquamarine;
+    width: 600px;
+}
+
+.MuiOutlinedInput-input {
+    color: black !important;
+}
+
+.MuiOutlinedInput-root fieldset {
+    border-color: #6d6d6e;
+    color: black;
+}
+.MuiOutlinedInput-root:hover fieldset {
+    border-color: #d2d2d2 !important;
+}
+
+.MuiInputLabel-root {
+    color: black !important;
+}

@@ -7,11 +7,13 @@ import { HeaderButton } from './HeaderButton/HeaderButton'
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
 import { setLogin } from '../../redux/actions'
+import { useNavigate } from 'react-router-dom'
 
 export const Header = () => {
     const dispatch = useDispatch()
     const { login } = useTypedSelector((store) => store.serve)
     const [isDialog, setIsDialog] = useState(false)
+    const navigate = useNavigate()
 
     const handleClick = () => {
         setIsDialog(true)
@@ -28,6 +30,7 @@ export const Header = () => {
 
     const handleLogout = () => {
         dispatch(setLogin(false))
+        navigate('main')
     }
     return (
         <>
@@ -39,9 +42,9 @@ export const Header = () => {
                             component="div"
                             sx={{ flexGrow: 1 }}
                         >
-                            SocialNet
+                            TutorAds
                         </Typography>
-                        <Navigation />
+                        <Navigation login={login} />
                         {login ? (
                             <ProfileMenu onLogoutClick={handleLogout} />
                         ) : (
