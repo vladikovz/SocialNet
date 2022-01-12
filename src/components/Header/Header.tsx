@@ -6,8 +6,8 @@ import { AuthDialog } from '../AuthDialog/AuthDialog'
 import { HeaderButton } from './HeaderButton/HeaderButton'
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
-import { setLogin } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
+import { setLogin } from '../../redux/actions/serviceActions'
 
 export const Header = () => {
     const dispatch = useDispatch()

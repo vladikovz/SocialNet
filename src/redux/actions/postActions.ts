@@ -1,11 +1,5 @@
-import { PostActionTypes, ServiceActionTypes } from './types'
-import { IServiceAction } from './reducers/serviceReducer'
-import { IPostAction } from './reducers/postReducer'
-
-export const setLogin = (payload: boolean): IServiceAction => ({
-    type: ServiceActionTypes.LOG_IN,
-    payload,
-})
+import { PostActionTypes } from '../types'
+import { IPostAction } from '../reducers/postReducer'
 
 export const addPost = (payload: {
     massage: string
