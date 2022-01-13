@@ -4,17 +4,17 @@ interface INavigationProps {
     login: boolean
 }
 export const Navigation = (props: INavigationProps) => {
-    let activeStyle = {
+    const activeStyle = {
         color: 'red',
         textDecoration: 'none',
     }
 
-    let inactiveStyle = {
+    const inactiveStyle = {
         color: 'white',
         textDecoration: 'none',
     }
 
-    let containerStyle = {
+    const containerStyle = {
         width: '200px',
         display: 'flex',
         justifyContent: 'space-between',
