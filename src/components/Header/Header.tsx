@@ -6,32 +6,53 @@ import { AuthDialog } from '../AuthDialog/AuthDialog'
 import { HeaderButton } from './HeaderButton/HeaderButton'
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
-import { setLogin } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
+import { setLogin } from '../../redux/actions/serviceActions'
+import styles from './styles.module.css'
+import { CreateAdsDialog } from '../CreateAdsDialog/CreateAdsDialog'
 
 export const Header = () => {
     const dispatch = useDispatch()
     const { login } = useTypedSelector((store) => store.serve)
-    const [isDialog, setIsDialog] = useState(false)
+    const [isLoginDialog, setIsLoginDialog] = useState(false)
+    const [isCreateDialog, setIsCreateDialog] = useState(false)
     const navigate = useNavigate()
 
-    const handleClick = () => {
-        setIsDialog(true)
+    const handleLoginBtnClick = () => {
+        setIsLoginDialog(true)
+    }
+    const handleCreateBtnClick = () => {
+        if (!login) {
+            setIsLoginDialog(true)
+        } else {
+            setIsCreateDialog(true)
+        }
     }
 
-    const handleClose = () => {
-        setIsDialog(false)
+    const handleLoginDialogClose = () => {
+        setIsLoginDialog(false)
+    }
+    const handleCreateDialogClose = () => {
+        setIsCreateDialog(false)
     }
 
-    const handleSubmit = () => {
+    const handleLoginSubmit = () => {
         dispatch(setLogin(true))
-        handleClose()
+        handleLoginDialogClose()
+    }
+    const handleCreateSubmit = () => {
+        handleCreateDialogClose()
     }
 
     const handleLogout = () => {
         dispatch(setLogin(false))
         navigate('main')
     }
+
+    const handleLabelClick = () => {
+        navigate('main')
+    }
+
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -40,16 +61,23 @@ export const Header = () => {
                         <Typography
                             variant="h6"
                             component="div"
-                            sx={{ flexGrow: 1 }}
+                            sx={{ flexGrow: 1, cursor: 'pointer' }}
+                            onClick={handleLabelClick}
                         >
                             TutorAds
                         </Typography>
+                        <div className={styles.buttonWrapper}>
+                            <HeaderButton
+                                onClick={handleCreateBtnClick}
+                                name={'Create ads'}
+                            />
+                        </div>
                         <Navigation login={login} />
                         {login ? (
                             <ProfileMenu onLogoutClick={handleLogout} />
                         ) : (
                             <HeaderButton
-                                onClick={handleClick}
+                                onClick={handleLoginBtnClick}
                                 name={'Log In'}
                             />
                         )}
@@ -57,10 +85,16 @@ export const Header = () => {
                 </AppBar>
             </Box>
             <AuthDialog
-                isOpen={isDialog}
-                handleClose={handleClose}
+                isOpen={isLoginDialog}
+                handleClose={handleLoginDialogClose}
                 title={'Log In'}
-                onSubmit={handleSubmit}
+                onSubmit={handleLoginSubmit}
+            />
+            <CreateAdsDialog
+                isOpen={isCreateDialog}
+                handleClose={handleCreateDialogClose}
+                title={'Create ads'}
+                onSubmit={handleCreateSubmit}
             />
         </>
     )

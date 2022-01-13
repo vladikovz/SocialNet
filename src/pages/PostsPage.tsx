@@ -4,7 +4,12 @@ import { TextFieldCard } from '../components/TextFieldCard/TextFieldCard'
 import { Button } from '@mui/material'
 import { PostCard } from '../components/PostCard/PostCard'
 import { useDispatch } from 'react-redux'
-import { addPost, deletePost, dislikePost, likePost } from '../redux/actions'
+import {
+    addPost,
+    deletePost,
+    dislikePost,
+    likePost,
+} from '../redux/actions/postActions'
 import { useTypedSelector } from '../redux/hooks/useTypedSelector'
 import { v4 as uuidv4 } from 'uuid'
 
