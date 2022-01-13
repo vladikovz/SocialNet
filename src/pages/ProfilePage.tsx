@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Button } from '@mui/material'
 import { fetchAds } from '../redux/api/adsApi'
 import { useDispatch } from 'react-redux'

@@ -13,6 +13,7 @@ export const HeaderButton = (props: ISubmitButtonProps) => {
         '&:hover': {
             backgroundColor: '#9d9d9d',
         },
+        width: "150px"
     }))
     return (
         <>

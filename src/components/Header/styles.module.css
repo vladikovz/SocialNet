@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 10px;
+}
+
+.buttonWrapper {
+    z-index: 1;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
