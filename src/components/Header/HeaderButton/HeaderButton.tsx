@@ -6,15 +6,16 @@ interface ISubmitButtonProps {
     onClick: () => void
 }
 
+const CustomButton = styled(Button)(() => ({
+    color: 'white',
+    backgroundColor: '#565656',
+    '&:hover': {
+        backgroundColor: '#9d9d9d',
+    },
+    width: '150px',
+}))
+
 export const HeaderButton = (props: ISubmitButtonProps) => {
-    const CustomButton = styled(Button)(() => ({
-        color: 'white',
-        backgroundColor: '#565656',
-        '&:hover': {
-            backgroundColor: '#9d9d9d',
-        },
-        width: "150px"
-    }))
     return (
         <>
             <CustomButton onClick={props.onClick} variant="contained">

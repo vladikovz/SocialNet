@@ -1,7 +1,13 @@
 # TutorAds
 
-Posts page: add post, del post, like/dislike post
+Posts page:
 
+-   Add/del posts
+-   Like/dislike posts
+-   The form of adding Adds
 
-#Stack: 
-Webpack, Typescript, Redux, Redux thunk, Css Modules, Material UI 
+##Stack:
+Webpack, Typescript, Redux, Redux thunk, Css Modules, Styled Components
+
+###Technology:
+Material UI, Axios, EsLint, Prettier, Formik, Yup
