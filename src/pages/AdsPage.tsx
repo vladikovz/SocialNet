@@ -10,10 +10,14 @@ export const AdsPage = () => {
     const { currentAds } = useTypedSelector((store) => store.ads)
     const dispatch = useDispatch()
     const [isReady, setIsReady] = useState(false)
+
     useEffect(() => {
         dispatch(GetAds(params.id))
-        Object.keys(currentAds).length && setIsReady(true)
     }, [])
+
+    useEffect(() => {
+        Object.keys(currentAds).length && setIsReady(true)
+    }, [currentAds])
 
     return isReady ? (
         <MainAppLayout>{JSON.stringify(currentAds, null, 4)}</MainAppLayout>
