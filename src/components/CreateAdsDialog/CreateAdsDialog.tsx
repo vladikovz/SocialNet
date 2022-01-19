@@ -9,6 +9,9 @@ import { SubmitButtonsLayout } from './SubmitButtonsLayout/SubmitButtonsLayout'
 import { DialogTitleLayout } from './DialogTitleLayout/DialogTitleLayout'
 import { SwitchButton } from './SwitchButton/SwitchButton'
 import { SelectValue } from './SelectValue/SelectValue'
+import { useDispatch } from 'react-redux'
+import { AddAds } from '../../redux/actions/adsActions'
+import { IAds } from '../../Interfaces/IAds'
 
 interface ICreateAdsDialogProps {
     title: string
@@ -36,6 +39,17 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
         language: '',
         salary: '',
         photo: null,
+    }
+    const dispatch = useDispatch()
+
+    const getAds = (data: IAddsInitialValues) => {
+        const ads: IAds = {
+            id: '6346',
+            userId: '',
+            createDate: new Date(),
+            data,
+        }
+        return ads
     }
 
     return (
@@ -69,6 +83,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                     console.log(values)
                     setSubmitting(false)
                     props.handleClose()
+                    dispatch(AddAds(getAds(values)))
                 }}
             >
                 {({

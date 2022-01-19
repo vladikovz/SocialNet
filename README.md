@@ -4,10 +4,10 @@ Posts page:
 
 -   Add/del posts
 -   Like/dislike posts
--   The form of adding Adds
+-   The form of adding Ads
 
-##Stack:
+## Stack:
 Webpack, Typescript, Redux, Redux thunk, Css Modules, Styled Components
 
-###Technology:
-Material UI, Axios, EsLint, Prettier, Formik, Yup
+### Technology:
+Material UI, Axios, EsLint, Prettier, Formik, Yup, Moment.js

@@ -7,5 +7,5 @@ export interface IAddsInitialValues {
     education: string
     language: string
     salary: string
-    photo: File
+    photo: File | string
 }
