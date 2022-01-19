@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Box, Toolbar, Typography } from '@mui/material'
+import { AppBar } from '@mui/material'
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu'
 import { Navigation } from '../ProfileMenu/Navigation/Navigation'
 import { AuthDialog } from '../AuthDialog/AuthDialog'
@@ -8,8 +8,8 @@ import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setLogin } from '../../redux/actions/serviceActions'
-import styles from './styles.module.css'
 import { CreateAdsDialog } from '../CreateAdsDialog/CreateAdsDialog'
+import * as S from './style'
 
 export const Header = () => {
     const dispatch = useDispatch()
@@ -55,23 +55,16 @@ export const Header = () => {
 
     return (
         <>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" enableColorOnDark>
-                    <Toolbar>
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{ flexGrow: 1, cursor: 'pointer' }}
-                            onClick={handleLabelClick}
-                        >
-                            TutorAds
-                        </Typography>
-                        <div className={styles.buttonWrapper}>
-                            <HeaderButton
-                                onClick={handleCreateBtnClick}
-                                name={'Create ads'}
-                            />
-                        </div>
+            <AppBar position="static" enableColorOnDark>
+                <S.Container>
+                    <S.Label onClick={handleLabelClick}>TutorAds</S.Label>
+                    <S.CenterBtn>
+                        <HeaderButton
+                            onClick={handleCreateBtnClick}
+                            name={'Create ads'}
+                        />
+                    </S.CenterBtn>
+                    <S.Navigation>
                         <Navigation login={login} />
                         {login ? (
                             <ProfileMenu onLogoutClick={handleLogout} />
@@ -81,9 +74,10 @@ export const Header = () => {
                                 name={'Log In'}
                             />
                         )}
-                    </Toolbar>
-                </AppBar>
-            </Box>
+                    </S.Navigation>
+                </S.Container>
+            </AppBar>
+
             <AuthDialog
                 isOpen={isLoginDialog}
                 handleClose={handleLoginDialogClose}
