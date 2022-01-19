@@ -10,6 +10,12 @@ export enum PostActionTypes {
     DELETE_POST = 'DELETE_POST',
 }
 
+export enum AdsActionTypes {
+    ADD_ADS = 'ADD_ADS',
+    DELETE_ADS = 'DELETE_ADS',
+    GET_ADS = 'GET_ADS',
+}
+
 interface ILoginAction {
     type: ServiceActionTypes.LOG_IN
     payload: number
@@ -24,3 +30,8 @@ export type PostActionType =
     | PostActionTypes.LIKE_POST
     | PostActionTypes.DISLIKE_POST
     | PostActionTypes.DELETE_POST
+
+export type AdsActionType =
+    | AdsActionTypes.ADD_ADS
+    | AdsActionTypes.DELETE_ADS
+    | AdsActionTypes.GET_ADS

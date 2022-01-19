@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -32,6 +34,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.md', '.css'],
+        alias: {
+            '@mui/styled-engine': '@mui/styled-engine-sc',
+        },
     },
     plugins: [
         new HTMLWebpackPlugin({
