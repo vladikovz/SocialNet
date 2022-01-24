@@ -11,6 +11,7 @@ export const ProfilePage = () => {
     }
     return (
         <>
+            <h1>This is my profile</h1>
             <Button onClick={handleClick}>Fetch</Button>
         </>
     )

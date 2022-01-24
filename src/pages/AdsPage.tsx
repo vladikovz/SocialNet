@@ -4,6 +4,10 @@ import { MainAppLayout } from '../layouts/MainAppLayout/MainAppLayout'
 import { useTypedSelector } from '../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
 import { GetAds } from '../redux/actions/adsActions'
+import { TopLayout } from '../layouts/AdsPageLayouts/TopLayout'
+import { PhotoViewer } from '../components/PhotoViewer/PhotoViewer'
+import { UserBox } from '../components/UserBox/UserBox'
+import { InfoBlock } from '../components/InfoBlock/InfoBlock'
 
 export const AdsPage = () => {
     const params = useParams()
@@ -19,9 +23,16 @@ export const AdsPage = () => {
         Object.keys(currentAds).length && setIsReady(true)
     }, [currentAds])
 
-    return isReady ? (
-        <MainAppLayout>{JSON.stringify(currentAds, null, 4)}</MainAppLayout>
-    ) : (
-        <></>
+    if (!isReady) {
+        return null
+    }
+    return (
+        <MainAppLayout>
+            <TopLayout>
+                <PhotoViewer photo={currentAds.data.photo} />
+                <UserBox />
+            </TopLayout>
+            <InfoBlock items={currentAds.data} />
+        </MainAppLayout>
     )
 }
