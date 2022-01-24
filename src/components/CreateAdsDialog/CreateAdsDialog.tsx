@@ -1,5 +1,11 @@
 import React from 'react'
-import { Button, Dialog, styled, TextField } from '@mui/material'
+import {
+    Button,
+    Dialog,
+    styled,
+    TextareaAutosize,
+    TextField,
+} from '@mui/material'
 import { Formik } from 'formik'
 import { FormCreateLayout } from '../../layouts/FormCreateLayout/FormCreateLayout'
 import { createAdsValidationSchema } from '../../constants/validationSchemes'
@@ -19,10 +25,13 @@ interface ICreateAdsDialogProps {
     handleClose: () => void
     onSubmit: () => void
 }
+type widthT = {
+    width?: string
+}
 
-const TextFieldStyled = styled(TextField)`
+const TextFieldStyled = styled(TextField)<widthT>`
     .MuiInputLabel-shrink {
-        color: white;
+        color: ${(props) => props.width};
     }
 `
 
@@ -39,6 +48,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
         language: '',
         salary: '',
         photo: null,
+        description: '',
     }
     const dispatch = useDispatch()
 
@@ -194,6 +204,15 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                 getValue={(value) =>
                                     setFieldValue('language', value)
                                 }
+                            />
+                            <TextareaAutosize
+                                id="description"
+                                aria-label="Description"
+                                placeholder="Description"
+                                minRows={3}
+                                style={{ maxWidth: 200 }}
+                                value={values.description}
+                                onChange={handleChange}
                             />
                         </FormCreateLayout>
                         <SubmitButtonsLayout>

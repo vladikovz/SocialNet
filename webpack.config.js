@@ -33,7 +33,7 @@ module.exports = {
         historyApiFallback: true,
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.md', '.css'],
+        extensions: ['*', '.js', '.jsx', '.tsx', '.ts', '.md', '.css', '.png'],
         alias: {
             '@mui/styled-engine': '@mui/styled-engine-sc',
         },
