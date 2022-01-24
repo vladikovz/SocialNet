@@ -9,7 +9,7 @@ const SubmitButtonsLayoutStyled = styled(DialogTitle)`
     justify-content: flex-end;
 `
 
-export const SubmitButtonsLayout = (props: ICreateDialogButtons) => {
+export const SubmitLayout = (props: ICreateDialogButtons) => {
     return (
         <SubmitButtonsLayoutStyled>{props.children}</SubmitButtonsLayoutStyled>
     )

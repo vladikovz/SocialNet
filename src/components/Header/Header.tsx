@@ -3,7 +3,6 @@ import { AppBar } from '@mui/material'
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu'
 import { Navigation } from '../ProfileMenu/Navigation/Navigation'
 import { AuthDialog } from '../AuthDialog/AuthDialog'
-import { HeaderButton } from './HeaderButton/HeaderButton'
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -59,20 +58,18 @@ export const Header = () => {
                 <S.Container>
                     <S.Label onClick={handleLabelClick}>TutorAds</S.Label>
                     <S.CenterBtn>
-                        <HeaderButton
-                            onClick={handleCreateBtnClick}
-                            name={'Create ads'}
-                        />
+                        <S.HeaderButton onClick={handleCreateBtnClick}>
+                            Create ads
+                        </S.HeaderButton>
                     </S.CenterBtn>
                     <S.Navigation>
                         <Navigation login={login} />
                         {login ? (
                             <ProfileMenu onLogoutClick={handleLogout} />
                         ) : (
-                            <HeaderButton
-                                onClick={handleLoginBtnClick}
-                                name={'Log In'}
-                            />
+                            <S.HeaderButton onClick={handleLoginBtnClick}>
+                                Log In
+                            </S.HeaderButton>
                         )}
                     </S.Navigation>
                 </S.Container>

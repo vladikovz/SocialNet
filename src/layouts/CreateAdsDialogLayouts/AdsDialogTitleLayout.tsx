@@ -9,6 +9,6 @@ const DialogTitleLayoutStyled = styled(DialogTitle)`
     text-align: center;
 `
 
-export const DialogTitleLayout = (props: ICreateDialogTitle) => {
+export const AdsDialogTitleLayout = (props: ICreateDialogTitle) => {
     return <DialogTitleLayoutStyled>{props.children}</DialogTitleLayoutStyled>
 }
