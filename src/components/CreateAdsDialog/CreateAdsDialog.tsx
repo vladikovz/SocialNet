@@ -1,23 +1,18 @@
 import React from 'react'
-import {
-    Button,
-    Dialog,
-    styled,
-    TextareaAutosize,
-    TextField,
-} from '@mui/material'
+import { Button, Dialog, TextareaAutosize } from '@mui/material'
 import { Formik } from 'formik'
-import { FormCreateLayout } from '../../layouts/FormCreateLayout/FormCreateLayout'
 import { createAdsValidationSchema } from '../../constants/validationSchemes'
 import { AddPhotoButton } from './AddPhotoButton/AddPhotoButton'
 import { IAddsInitialValues } from '../../Interfaces/IAddsInitialValues'
-import { SubmitButtonsLayout } from './SubmitButtonsLayout/SubmitButtonsLayout'
-import { DialogTitleLayout } from './DialogTitleLayout/DialogTitleLayout'
 import { SwitchButton } from './SwitchButton/SwitchButton'
 import { SelectValue } from './SelectValue/SelectValue'
 import { useDispatch } from 'react-redux'
 import { AddAds } from '../../redux/actions/adsActions'
 import { IAds } from '../../Interfaces/IAds'
+import * as S from './styles'
+import { AdsDialogTitleLayout } from '../../layouts/CreateAdsDialogLayouts/AdsDialogTitleLayout'
+import { CreateAdsFormLayout } from '../../layouts/CreateAdsDialogLayouts/CreateAdsFormLayout'
+import { SubmitLayout } from '../../layouts/CreateAdsDialogLayouts/SubmitLayout'
 
 interface ICreateAdsDialogProps {
     title: string
@@ -25,15 +20,6 @@ interface ICreateAdsDialogProps {
     handleClose: () => void
     onSubmit: () => void
 }
-type widthT = {
-    width?: string
-}
-
-const TextFieldStyled = styled(TextField)<widthT>`
-    .MuiInputLabel-shrink {
-        color: ${(props) => props.width};
-    }
-`
 
 const languagesList = ['English', 'Russian', 'Japanese']
 
@@ -72,7 +58,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                 },
             }}
         >
-            <DialogTitleLayout>{props.title}</DialogTitleLayout>
+            <AdsDialogTitleLayout>{props.title}</AdsDialogTitleLayout>
             <Formik
                 initialValues={initialValues}
                 validationSchema={createAdsValidationSchema}
@@ -107,8 +93,8 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                     setFieldValue,
                 }) => (
                     <form onSubmit={handleSubmit}>
-                        <FormCreateLayout>
-                            <TextFieldStyled
+                        <CreateAdsFormLayout>
+                            <S.CustomTextField
                                 fullWidth
                                 id="title"
                                 name="title"
@@ -118,7 +104,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                 error={touched.title && Boolean(errors.title)}
                                 helperText={touched.title && errors.title}
                             />
-                            <TextFieldStyled
+                            <S.CustomTextField
                                 fullWidth
                                 id="field"
                                 name="field"
@@ -128,7 +114,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                 error={touched.field && Boolean(errors.field)}
                                 helperText={touched.field && errors.field}
                             />
-                            <TextFieldStyled
+                            <S.CustomTextField
                                 fullWidth
                                 id="experience"
                                 name="experience"
@@ -144,7 +130,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                     touched.experience && errors.experience
                                 }
                             />
-                            <TextFieldStyled
+                            <S.CustomTextField
                                 fullWidth
                                 id="schedule"
                                 name="schedule"
@@ -162,7 +148,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                     setFieldValue('sex', sexValue)
                                 }
                             />
-                            <TextFieldStyled
+                            <S.CustomTextField
                                 fullWidth
                                 id="education"
                                 name="education"
@@ -177,7 +163,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                     touched.education && errors.education
                                 }
                             />
-                            <TextFieldStyled
+                            <S.CustomTextField
                                 fullWidth
                                 id="salary"
                                 name="salary"
@@ -214,8 +200,8 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                                 value={values.description}
                                 onChange={handleChange}
                             />
-                        </FormCreateLayout>
-                        <SubmitButtonsLayout>
+                        </CreateAdsFormLayout>
+                        <SubmitLayout>
                             <Button
                                 sx={{ margin: '10px' }}
                                 color={'secondary'}
@@ -231,7 +217,7 @@ export const CreateAdsDialog = (props: ICreateAdsDialogProps) => {
                             >
                                 Cancel
                             </Button>
-                        </SubmitButtonsLayout>
+                        </SubmitLayout>
                     </form>
                 )}
             </Formik>

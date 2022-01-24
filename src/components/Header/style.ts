@@ -1,4 +1,4 @@
-import { styled, Toolbar } from '@mui/material'
+import { Button, styled, Toolbar } from '@mui/material'
 
 export const Container = styled(Toolbar)`
     display: flex;
@@ -23,4 +23,13 @@ export const Navigation = styled('div')`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+`
+
+export const HeaderButton = styled(Button)`
+    color: white;
+    background-color: #565656;
+    &:hover {
+        background-color: #9d9d9d;
+    }
+    width: 150px;
 `

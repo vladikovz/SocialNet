@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useRef, useState } from 'react'
-import { Button, styled } from '@mui/material'
-import { ImagePreviewStyled } from './ImagePreviewStyled'
+import * as S from './styles'
 
 interface IAddButtonProps {
     id: string
@@ -9,33 +8,6 @@ interface IAddButtonProps {
     handleChangeInput: (file: File) => void
     error: boolean
 }
-
-const AddButtonStyled = styled(Button)`
-    color: black;
-    width: 150px;
-    height: 50px;
-    :hover {
-        background-color: #cccccc;
-    }
-`
-
-const DelButtonStyled = styled(Button)`
-    padding: 0;
-    border-radius: unset;
-    font-size: 12px;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #000000;
-    color: #ffffff;
-    opacity: 40%;
-    :hover {
-        background-color: #000000;
-        opacity: 65%;
-    }
-`
 
 export const AddPhotoButton = (props: IAddButtonProps) => {
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string>('')
@@ -61,12 +33,9 @@ export const AddPhotoButton = (props: IAddButtonProps) => {
 
     return !imagePreviewUrl ? (
         <>
-            <AddButtonStyled
-                sx={{ backgroundColor: props.error ? 'red' : 'aliceblue' }}
-                onClick={handleBtnClick}
-            >
+            <S.AddButton onClick={handleBtnClick} isErrorStyle={props.error}>
                 {props.name}
-            </AddButtonStyled>
+            </S.AddButton>
             <input
                 id={props.id}
                 type={props.type}
@@ -76,11 +45,9 @@ export const AddPhotoButton = (props: IAddButtonProps) => {
             />
         </>
     ) : (
-        <div style={{ position: 'relative', height: '50px' }}>
-            <ImagePreviewStyled src={imagePreviewUrl} />
-            <DelButtonStyled onClick={handleRemoveImg}>
-                Click to remove
-            </DelButtonStyled>
-        </div>
+        <S.DelButtonWrapper>
+            <S.ImagePreview src={imagePreviewUrl} />
+            <S.DelButton onClick={handleRemoveImg}>Click to remove</S.DelButton>
+        </S.DelButtonWrapper>
     )
 }

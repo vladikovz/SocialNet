@@ -14,6 +14,6 @@ const FormLayoutWrap = styled.div`
     justify-items: center;
 `
 
-export const FormCreateLayout = (props: IFormCreateLayoutProps) => {
+export const CreateAdsFormLayout = (props: IFormCreateLayoutProps) => {
     return <FormLayoutWrap>{props.children}</FormLayoutWrap>
 }
