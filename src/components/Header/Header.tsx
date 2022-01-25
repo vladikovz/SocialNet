@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AppBar } from '@mui/material'
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu'
-import { Navigation } from '../ProfileMenu/Navigation/Navigation'
+import { Navigation } from '../Navigation/Navigation'
 import { AuthDialog } from '../AuthDialog/AuthDialog'
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
