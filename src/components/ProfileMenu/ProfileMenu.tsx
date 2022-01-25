@@ -2,6 +2,8 @@ import React from 'react'
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import Fade from '@mui/material/Fade'
 import { AccountCircle } from '@mui/icons-material'
+import { RatingStars } from '../RatingStars/RatingStars'
+import * as S from './styles'
 
 interface IProfileMenu {
     onLogoutClick: () => void
@@ -42,9 +44,16 @@ export const ProfileMenu = (props: IProfileMenu) => {
                 onClose={handleClose}
                 TransitionComponent={Fade}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+                <S.BorderWrapper side={'bottom'}>
+                    <RatingStars />
+                </S.BorderWrapper>
+                <MenuItem onClick={handleClose}>My ads</MenuItem>
+                <MenuItem onClick={handleClose}>Favorite</MenuItem>
+                <MenuItem onClick={handleClose}>Chat</MenuItem>
+                <MenuItem onClick={handleClose}>Settings</MenuItem>
+                <S.BorderWrapper side={'top'}>
+                    <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+                </S.BorderWrapper>
             </Menu>
         </div>
     )
