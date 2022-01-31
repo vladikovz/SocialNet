@@ -3,7 +3,7 @@ import { CardActionArea, CardMedia, styled, Typography } from '@mui/material'
 export const Container = styled(CardActionArea)`
     width: 100%;
     height: 100%;
-    margin: 10px;
+    margin: 10px 0;
     display: flex;
     background-color: #eeeeee;
     overflow: hidden;
@@ -35,6 +35,6 @@ export const Photo = styled(CardMedia)`
 ` as typeof CardMedia
 
 export const PhotoWrapper = styled('div')`
-    width: 300px;
+    width: 40%;
     height: 100%;
 `

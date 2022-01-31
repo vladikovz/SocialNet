@@ -4,8 +4,8 @@ import onFavorite from '../../assets/img/onFavorite.png'
 import favorite from '../../assets/img/favorite.png'
 
 type ContactButtonProps = {
-    bgColor?: string
-    bgColorHover?: string
+    bg_color?: string
+    bg_color_hover?: string
 }
 
 type FavoriteIconProps = {
@@ -28,12 +28,12 @@ export const UserName = styled.div`
 
 export const ContactButton = styled(Button)<ContactButtonProps>`
     width: 150px;
-    background-color: #${({ bgColor }) => bgColor ?? '00aaff'};
+    background-color: #${({ bg_color }) => bg_color ?? '00aaff'};
     color: white;
     margin-bottom: 10px;
 
     &:hover {
-        background-color: #${({ bgColorHover }) => bgColorHover ?? '0085c9'};
+        background-color: #${({ bg_color_hover }) => bg_color_hover ?? '0085c9'};
     }
 `
 

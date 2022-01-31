@@ -50,15 +50,15 @@ export const UserBox = () => {
                 <S.UserName>Vlad</S.UserName>
             </S.Container>
             <S.ContactButton
-                bgColor={'4fcc02'}
-                bgColorHover={'3d9f00'}
+                bg_color={'4fcc02'}
+                bg_color_hover={'3d9f00'}
                 onClick={handlePhoneClick}
             >
                 {isPhoneShow ? '+79533221455' : '+7953...'}
             </S.ContactButton>
             <S.ContactButton
-                bgColor={'00aaff'}
-                bgColorHover={'0085c9'}
+                bg_color={'00aaff'}
+                bg_color_hover={'0085c9'}
                 onClick={handleContactClick}
             >
                 Contact
