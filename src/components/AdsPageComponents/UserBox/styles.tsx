@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '@mui/material'
-import onFavorite from '../../assets/img/onFavorite.png'
-import favorite from '../../assets/img/favorite.png'
+import onFavorite from '../../../assets/img/onFavorite.png'
+import favorite from '../../../assets/img/favorite.png'
 
 type ContactButtonProps = {
     bg_color?: string

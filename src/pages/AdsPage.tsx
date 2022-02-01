@@ -5,8 +5,8 @@ import { useTypedSelector } from '../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
 import { GetAds } from '../redux/actions/adsActions'
 import { TopLayout } from '../layouts/AdsPageLayouts/TopLayout'
-import { PhotoViewer } from '../components/PhotoViewer/PhotoViewer'
-import { UserBox } from '../components/UserBox/UserBox'
+import { PhotoViewer } from '../components/AdsPageComponents/PhotoViewer/PhotoViewer'
+import { UserBox } from '../components/AdsPageComponents/UserBox/UserBox'
 import { InfoBlock } from '../components/InfoBlock/InfoBlock'
 
 export const AdsPage = () => {
