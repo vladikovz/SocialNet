@@ -2,7 +2,7 @@ import { AccountCircle } from '@mui/icons-material'
 import { Dialog, DialogTitle, IconButton, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { ManageItemLayout } from '../../layouts/AdsPageLayouts/ManageItemLayout'
+import { ManageItemLayout } from '../../../layouts/AdsPageLayouts/ManageItemLayout'
 import { useNavigate } from 'react-router-dom'
 
 export const UserBox = () => {
