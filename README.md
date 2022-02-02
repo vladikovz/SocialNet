@@ -17,9 +17,13 @@ Ads page:
 
 ProfilePage:
 
--   rating stars
--   Block for the tips or the advertisement
--   list of my ads
+- Bio Block
+    - Colorful avatar 
+    - Rating stars
+- Block for the tips or the advertisement
+- Buttons block:
+    - List of my ads
+    - Settings
 
 ## Stack:
 
