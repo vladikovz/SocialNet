@@ -19,14 +19,18 @@ export const ProfileMenu = (props: IProfileMenu) => {
     const handleClick = (event: any) => {
         setAnchorEl(event.currentTarget)
     }
-    const handleClose = () => {
+
+    const handleItemClick = (path: ProfileTabs) => {
         setAnchorEl(null)
-        navigate(`/profile/${ProfileTabs.myAds}`)
+        navigate(`/profile/${path}`)
     }
+
     const handleLogoutClick = () => {
         props.onLogoutClick()
-        handleClose()
+        setAnchorEl(null)
+        navigate(`/main`)
     }
+
     return (
         <div>
             <IconButton
@@ -46,16 +50,20 @@ export const ProfileMenu = (props: IProfileMenu) => {
                 }}
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleClose}
+                onClose={() => setAnchorEl(null)}
                 TransitionComponent={Fade}
             >
                 <S.BorderWrapper side={'bottom'}>
                     <RatingStars />
                 </S.BorderWrapper>
-                <MenuItem onClick={handleClose}>My ads</MenuItem>
-                <MenuItem onClick={handleClose}>Favorite</MenuItem>
-                <MenuItem onClick={handleClose}>Chat</MenuItem>
-                <MenuItem onClick={handleClose}>Settings</MenuItem>
+                <MenuItem onClick={() => handleItemClick(ProfileTabs.myAds)}>
+                    My ads
+                </MenuItem>
+                <MenuItem>Favorite</MenuItem>
+                <MenuItem>Chat</MenuItem>
+                <MenuItem onClick={() => handleItemClick(ProfileTabs.settings)}>
+                    Settings
+                </MenuItem>
                 <S.BorderWrapper side={'top'}>
                     <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
                 </S.BorderWrapper>

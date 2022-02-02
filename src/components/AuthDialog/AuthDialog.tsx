@@ -1,14 +1,14 @@
 import React, { ChangeEvent, useState } from 'react'
 import {
     Button,
-    Dialog,
     DialogTitle,
     FormControl,
-    Input,
+    IconButton,
     InputAdornment,
-    InputLabel,
+    OutlinedInput,
 } from '@mui/material'
-import { AccountCircle } from '@mui/icons-material'
+import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material'
+import * as S from './styles'
 
 interface IAuthDialogProps {
     title: string
@@ -18,28 +18,35 @@ interface IAuthDialogProps {
 }
 
 export const AuthDialog = (props: IAuthDialogProps) => {
-    const [value, setValue] = useState('')
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
+    const [visible, setVisible] = useState<boolean>(false)
 
-    const handleChange = (
+    const handleLoginChange = (
         e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     ) => {
-        setValue(e.target.value)
+        setLogin(e.target.value)
     }
+
+    const handlePasswordChange = (
+        e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    ) => {
+        setPassword(e.target.value)
+    }
+
+    const handleClickShowPassword = () => {
+        setVisible((prevState) => !prevState)
+    }
+
     return (
-        <Dialog
-            onClose={props.handleClose}
-            open={props.isOpen}
-            sx={{
-                '& .MuiFormControl-root': { width: '90%', margin: '0 auto' },
-            }}
-        >
+        <S.CustomDialog onClose={props.handleClose} open={props.isOpen}>
             <DialogTitle>{props.title}</DialogTitle>
-            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-                <InputLabel htmlFor="login">Login</InputLabel>
-                <Input
+            <FormControl fullWidth variant="standard">
+                <p>Login</p>
+                <OutlinedInput
                     id="login"
-                    value={value}
-                    onChange={handleChange}
+                    value={login}
+                    onChange={handleLoginChange}
                     startAdornment={
                         <InputAdornment position="start">
                             <AccountCircle />
@@ -47,9 +54,25 @@ export const AuthDialog = (props: IAuthDialogProps) => {
                     }
                 />
             </FormControl>
-            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input id="password" value={value} onChange={handleChange} />
+            <FormControl fullWidth variant="standard">
+                <p>Password</p>
+                <OutlinedInput
+                    id="password"
+                    value={password}
+                    type={visible ? 'text' : 'password'}
+                    onChange={handlePasswordChange}
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                edge="end"
+                            >
+                                {visible ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    }
+                />
             </FormControl>
             <Button
                 sx={{ margin: '10px' }}
@@ -58,6 +81,6 @@ export const AuthDialog = (props: IAuthDialogProps) => {
             >
                 Submit
             </Button>
-        </Dialog>
+        </S.CustomDialog>
     )
 }
