@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IProfileTabsValue } from '../Interfaces/IProfileTabsValue'
 import { ProfileTabs } from '../constants/profileTabs'
+import { SettingsBlock } from '../components/SettingsBlock/SettingsBlock'
 
 const Item = styled.div`
     display: flex;
@@ -75,11 +76,17 @@ export const ProfilePage = () => {
             case ProfileTabs.myAds:
                 return <Item>{showMyAds()}</Item>
             case ProfileTabs.settings:
-                return <Item>Settings</Item>
-            case ProfileTabs.manage:
-                return <Item>Manage</Item>
-            case ProfileTabs.some:
-                return <Item>Some</Item>
+                return (
+                    <Item>
+                        <SettingsBlock />
+                    </Item>
+                )
+            case ProfileTabs.chat:
+                return <Item>Chat</Item>
+            case ProfileTabs.notifications:
+                return <Item>Notifications</Item>
+            case ProfileTabs.favorite:
+                return <Item>Favorite</Item>
             default:
                 return <Item>CARDS Nun</Item>
         }

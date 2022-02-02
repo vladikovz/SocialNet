@@ -2,6 +2,7 @@ import React from 'react'
 import * as S from './styles'
 import { RatingStars } from '../../RatingStars/RatingStars'
 import { Avatar } from '@mui/material'
+import { useTypedSelector } from '../../../redux/hooks/useTypedSelector'
 
 function stringToColor(string: string) {
     let hash = 0
@@ -36,10 +37,11 @@ function avatarProps(name: string) {
 }
 
 export const BioBlock = () => {
+    const { login } = useTypedSelector((store) => store.user)
     return (
         <S.Container>
             <Avatar {...avatarProps('Vladislav ')} />
-            <S.Name>Vladislav</S.Name>
+            <S.Name>{login ?? 'noName'}</S.Name>
             <RatingStars />
         </S.Container>
     )

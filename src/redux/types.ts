@@ -16,22 +16,22 @@ export enum AdsActionTypes {
     GET_ADS = 'GET_ADS',
 }
 
+export enum UserActionTypes {
+    SET_LOGIN = 'SET_LOGIN',
+    SET_PASSWORD = 'SET_PASSWORD',
+    SET_PHONE = 'SET_PHONE',
+    SET_EMAIL = 'SET_EMAIL',
+}
+
 interface ILoginAction {
     type: ServiceActionTypes.LOG_IN
     payload: number
 }
 
-export type ServiceActionType =
-    | ServiceActionTypes.LOG_IN
-    | ServiceActionTypes.SET_INPUT
+export type ServiceActionType = ServiceActionTypes
 
-export type PostActionType =
-    | PostActionTypes.ADD_POST
-    | PostActionTypes.LIKE_POST
-    | PostActionTypes.DISLIKE_POST
-    | PostActionTypes.DELETE_POST
+export type PostActionType = PostActionTypes
 
-export type AdsActionType =
-    | AdsActionTypes.ADD_ADS
-    | AdsActionTypes.DELETE_ADS
-    | AdsActionTypes.GET_ADS
+export type AdsActionType = AdsActionTypes
+
+export type UserActionType = UserActionTypes
