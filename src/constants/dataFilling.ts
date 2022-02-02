@@ -1,3 +1,5 @@
+import { IUserStore } from '../redux/reducers/userReducer'
+
 export const SampleAds = [
     {
         id: '43452322',
@@ -72,3 +74,10 @@ export const SampleAds = [
         },
     },
 ]
+
+export const testUser: IUserStore = {
+    login: 'Vladislav',
+    password: '123',
+    email: 'vladshevela@gmail.com',
+    phone: '+79657841295',
+}

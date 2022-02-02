@@ -27,15 +27,19 @@ export const ButtonsBlock = (props: IButtonsBlockProps) => {
                 aria-label="profile tabs"
             >
                 <S.CustomTab label="My ads" {...a11yProps(ProfileTabs.myAds)} />
+                <S.CustomTab label="Chat" {...a11yProps(ProfileTabs.chat)} />
+                <S.CustomTab
+                    label="Notifications"
+                    {...a11yProps(ProfileTabs.notifications)}
+                />
+                <S.CustomTab
+                    label="Favorite"
+                    {...a11yProps(ProfileTabs.favorite)}
+                />
                 <S.CustomTab
                     label="Settings"
                     {...a11yProps(ProfileTabs.settings)}
                 />
-                <S.CustomTab
-                    label="Manage"
-                    {...a11yProps(ProfileTabs.manage)}
-                />
-                <S.CustomTab label="Some" {...a11yProps(ProfileTabs.some)} />
             </S.CustomTabs>
         </S.Container>
     )
