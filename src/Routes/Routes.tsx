@@ -7,6 +7,7 @@ import { MainPage } from '../pages/MainPage'
 import { AdsPage } from '../pages/AdsPage'
 
 export const RoutesList: JSX.Element[] = [
+    <Route key={uuidv4()} path="*" element={<MainPage />} />,
     <Route key={uuidv4()} path="profile/:tab" element={<ProfilePage />} />,
     <Route key={uuidv4()} path="profile" element={<ProfilePage />} />,
     <Route key={uuidv4()} path="main" element={<MainPage />} />,
