@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton, Menu, MenuItem } from '@mui/material'
+import { Badge, IconButton, Menu, MenuItem } from '@mui/material'
 import Fade from '@mui/material/Fade'
 import { AccountCircle } from '@mui/icons-material'
 import { RatingStars } from '../RatingStars/RatingStars'
@@ -60,7 +60,11 @@ export const ProfileMenu = (props: IProfileMenu) => {
                     My ads
                 </MenuItem>
                 <MenuItem>Favorite</MenuItem>
-                <MenuItem>Chat</MenuItem>
+                <MenuItem>
+                    <Badge color="secondary" badgeContent={99}>
+                        Chat
+                    </Badge>
+                </MenuItem>
                 <MenuItem onClick={() => handleItemClick(ProfileTabs.settings)}>
                     Settings
                 </MenuItem>
