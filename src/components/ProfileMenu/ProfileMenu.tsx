@@ -60,7 +60,7 @@ export const ProfileMenu = (props: IProfileMenu) => {
                     My ads
                 </MenuItem>
                 <MenuItem>Favorite</MenuItem>
-                <MenuItem>
+                <MenuItem onClick={() => handleItemClick(ProfileTabs.chat)}>
                     <Badge color="secondary" badgeContent={99}>
                         Chat
                     </Badge>
