@@ -8,8 +8,9 @@ import { ProfileTabs } from '../../../constants/profileTabs'
 import { useNavigate } from 'react-router-dom'
 import { IParams__btnProps } from './styles'
 import moment from 'moment'
+import { UserAvatar } from '../../UserAvatar/UserAvatar'
 const ImgUrl =
-    'https://phonoteka.org/uploads/posts/2021-05/1622467118_16-phonoteka_org-p-vselennaya-kosmos-art-krasivo-18.jpg'
+    'https://cdn.pixabay.com/photo/2016/10/12/02/27/denali-national-park-1733313_1280.jpg'
 
 export const ChatCard = () => {
     const [isOpenParamsMenu, setIsOpenParamsMenu] = useState(false)
@@ -39,6 +40,9 @@ export const ChatCard = () => {
 
     return (
         <S.Container>
+            <S.Avatar>
+                <UserAvatar name={'V S'} sizeEm={2} border={2} hover />
+            </S.Avatar>
             <S.Photo src={ImgUrl} alt={'Ads picture'} />
             <S.Content>
                 <S.Content__name>Ivan</S.Content__name>

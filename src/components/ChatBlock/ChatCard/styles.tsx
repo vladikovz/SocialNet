@@ -10,6 +10,7 @@ export const Photo = styled.img`
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
+    overflow: hidden;
 `
 
 export const Content = styled.div`
@@ -59,11 +60,12 @@ export const Params__Btn = styled.div<IParams__btnProps>`
 export const Container = styled.div`
     display: grid;
     grid-template-columns: 2fr 7fr 1fr;
-    height: 15vh;
+    height: 150px;
     width: 100%;
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
+    position: relative;
 
     &:hover {
         background-color: antiquewhite;
@@ -71,4 +73,8 @@ export const Container = styled.div`
             visibility: visible;
         }
     }
+`
+
+export const Avatar = styled.div`
+    position: absolute;
 `
