@@ -12,7 +12,11 @@ import { UserAvatar } from '../../UserAvatar/UserAvatar'
 const ImgUrl =
     'https://cdn.pixabay.com/photo/2016/10/12/02/27/denali-national-park-1733313_1280.jpg'
 
-export const ChatCard = () => {
+interface IChatCardProps {
+    onCardClick: () => void
+    onAvatarClick: () => void
+}
+export const ChatCard = (props: IChatCardProps) => {
     const [isOpenParamsMenu, setIsOpenParamsMenu] = useState(false)
     const [paramsMenuAnchorEl, setParamsMenuAnchorEl] = React.useState(null)
     const [paramsMenuBtnColor, setParamsMenuBtnColor] = useState('#7e7e7e')
@@ -26,11 +30,15 @@ export const ChatCard = () => {
         setIsParamsMenuBtnVisible({ visible: 'visible' })
         setParamsMenuAnchorEl(event.currentTarget)
         setIsOpenParamsMenu(true)
+        event.stopPropagation()
     }
 
-    const handleCloseParamsMenu = () => {
+    const handleCloseParamsMenu = (e?: any) => {
         setIsParamsMenuBtnVisible({ visible: 'hidden' })
         setIsOpenParamsMenu(false)
+        if (e) {
+            e.stopPropagation()
+        }
     }
 
     const handleParamsMenuItemClick = (path: ProfileTabs) => {
@@ -38,9 +46,18 @@ export const ChatCard = () => {
         navigate(`/profile/${path}`)
     }
 
+    const handleAvatarClick = (e: any) => {
+        e.stopPropagation()
+        props.onAvatarClick()
+    }
+
+    const handleCardClick = (e: any) => {
+        props.onCardClick()
+        e.stopPropagation()
+    }
     return (
-        <S.Container>
-            <S.Avatar>
+        <S.Container onClick={handleCardClick}>
+            <S.Avatar onClick={(e) => handleAvatarClick(e)}>
                 <UserAvatar name={'V S'} sizeEm={2} border={2} hover />
             </S.Avatar>
             <S.Photo src={ImgUrl} alt={'Ads picture'} />

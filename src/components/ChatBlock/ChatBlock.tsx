@@ -1,25 +1,46 @@
 import * as S from './styles'
-import React from 'react'
+import React, { useState } from 'react'
 import { ChatCard } from './ChatCard/ChatCard'
 import { TextField } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { MessagesBlock } from './MessagesBlock/MessagesBlock'
 
 export const ChatBlock = () => {
+    const [isChat, setIsChat] = useState<boolean>(false)
+    const navigate = useNavigate()
+    const handleChatCardClick = () => {
+        setIsChat(true)
+    }
+    const handleAvatarClick = () => {
+        navigate(`/profile/my-ads`)
+    }
+
+    const handleCloseMessagesBlock = () => {
+        setIsChat(false)
+    }
     return (
         <S.Container>
-            <TextField
-                size={'small'}
-                sx={{
-                    color: 'black',
-                    backgroundColor: '#b1b1f3',
-                    borderRadius: '5px',
-                }}
-                fullWidth
-                id="outlined-password-input"
-                type="text"
-                autoComplete="current-password"
-                placeholder={'Search...'}
-            />
-            <ChatCard />
+            {isChat ? (
+                <MessagesBlock onBtnBackClick={handleCloseMessagesBlock} />
+            ) : (
+                <>
+                    <TextField
+                        size={'small'}
+                        sx={{
+                            backgroundColor: '#565656',
+                            borderRadius: '5px',
+                        }}
+                        fullWidth
+                        id="search"
+                        type="text"
+                        placeholder={'Search...'}
+                    />
+                    <ChatCard
+                        onCardClick={handleChatCardClick}
+                        onAvatarClick={handleAvatarClick}
+                    />
+                </>
+            )}
         </S.Container>
     )
 }
