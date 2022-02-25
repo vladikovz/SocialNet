@@ -9,6 +9,7 @@ export const Container = styled.div`
     padding: 7px;
     box-sizing: border-box;
     position: relative;
+    cursor: default;
 `
 
 export const Photo = styled.img`
@@ -28,9 +29,10 @@ export const Content = styled.div`
     margin: 0 15px;
 `
 export const Content__FirstLine = styled.div`
-    width: 100%;
+    width: fit-content;
     display: flex;
     justify-content: flex-start;
+    cursor: pointer;
 `
 
 export const Content__name = styled.h4`
@@ -39,11 +41,12 @@ export const Content__name = styled.h4`
 `
 
 export const Content__SecondLine = styled.div`
-    width: 100%;
+    width: fit-content;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 400px;
+    cursor: pointer;
 `
 
 export const Params__date = styled.div`
@@ -54,4 +57,5 @@ export const Params__date = styled.div`
 
 export const Avatar = styled.div`
     position: absolute;
+    cursor: pointer;
 `

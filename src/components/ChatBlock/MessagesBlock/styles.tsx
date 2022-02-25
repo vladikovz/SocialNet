@@ -40,7 +40,8 @@ export const MainField = styled.div`
 // export const MainField = styled.div`
 // `
 
-export const InputField = styled.div`
+export const FooterField = styled.div`
+    width: 100%;
     height: 58px;
     background-color: #bebebe;
 `

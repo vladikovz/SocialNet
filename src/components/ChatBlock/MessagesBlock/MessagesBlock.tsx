@@ -7,6 +7,8 @@ import { faAngleLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { ParamsMenu } from '../ParamsMenu/ParamsMenu'
 import { ProfileTabs } from '../../../constants/profileTabs'
 import { useNavigate } from 'react-router-dom'
+import { InputBlock } from './InputBlock/InputBlock'
+import { SampleAds } from '../../../constants/dataFilling'
 
 const PRIMARY_BTN_COLOR = '#7e7e7e'
 const SECONDARY_BTN_COLOR = 'black'
@@ -43,6 +45,14 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
         props.onBtnBackClick()
     }
 
+    const handleAvatarClick = () => {
+        navigate(`/profile/my-ads`)
+    }
+
+    const handleCardClick = () => {
+        navigate(`/ads/${SampleAds[0].id}`)
+    }
+
     return (
         <S.Container>
             <S.HeaderField>
@@ -57,8 +67,8 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
                 </S.HeaderField__BackBtn>
                 <S.HeaderField__AdsInfo>
                     <AdsInfo
-                        onCardClick={() => null}
-                        onAvatarClick={() => null}
+                        onCardClick={handleCardClick}
+                        onAvatarClick={handleAvatarClick}
                     />
                 </S.HeaderField__AdsInfo>
                 <S.HeaderField__Params
@@ -77,7 +87,9 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
                 </S.HeaderField__Params>
             </S.HeaderField>
             <S.MainField></S.MainField>
-            <S.InputField></S.InputField>
+            <S.FooterField>
+                <InputBlock />
+            </S.FooterField>
         </S.Container>
     )
 }
