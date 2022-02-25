@@ -11,12 +11,12 @@ interface IChatCardProps {
 }
 
 export const AdsInfo = (props: IChatCardProps) => {
-    const handleAvatarClick = (e: any) => {
+    const handleAvatarClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
         props.onAvatarClick()
     }
 
-    const handleCardClick = (e: any) => {
+    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
         props.onCardClick()
         e.stopPropagation()
     }

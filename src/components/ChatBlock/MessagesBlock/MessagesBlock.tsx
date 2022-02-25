@@ -28,13 +28,13 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
         navigate(`/profile/${path}`)
     }
 
-    const handleClickParamsBtn = (event: any) => {
+    const handleClickParamsBtn = (event: React.MouseEvent<HTMLDivElement>) => {
         setParamsMenuAnchorEl(event.currentTarget)
         setIsOpenParamsMenu(true)
         event.stopPropagation()
     }
 
-    const handleCloseParamsMenu = (e?: any) => {
+    const handleCloseParamsMenu = (e?: React.MouseEvent<HTMLDivElement>) => {
         setIsOpenParamsMenu(false)
         if (e) {
             e.stopPropagation()

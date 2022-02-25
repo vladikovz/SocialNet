@@ -16,7 +16,11 @@ export const ProfileMenu = (props: IProfileMenu) => {
     const open = Boolean(anchorEl)
     const navigate = useNavigate()
 
-    const handleClick = (event: any) => {
+    const handleClick = (
+        event:
+            | React.MouseEvent<HTMLAnchorElement>
+            | React.MouseEvent<HTMLButtonElement>
+    ) => {
         setAnchorEl(event.currentTarget)
     }
 

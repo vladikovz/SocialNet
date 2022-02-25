@@ -26,14 +26,14 @@ export const ChatCard = (props: IChatCardProps) => {
         })
     const navigate = useNavigate()
 
-    const handleClickParamsBtn = (event: any) => {
+    const handleClickParamsBtn = (event: React.MouseEvent<HTMLDivElement>) => {
         setIsParamsMenuBtnVisible({ visible: 'visible' })
         setParamsMenuAnchorEl(event.currentTarget)
         setIsOpenParamsMenu(true)
         event.stopPropagation()
     }
 
-    const handleCloseParamsMenu = (e?: any) => {
+    const handleCloseParamsMenu = (e?: React.MouseEvent<HTMLDivElement>) => {
         setIsParamsMenuBtnVisible({ visible: 'hidden' })
         setIsOpenParamsMenu(false)
         if (e) {
@@ -46,12 +46,12 @@ export const ChatCard = (props: IChatCardProps) => {
         navigate(`/profile/${path}`)
     }
 
-    const handleAvatarClick = (e: any) => {
+    const handleAvatarClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation()
         props.onAvatarClick()
     }
 
-    const handleCardClick = (e: any) => {
+    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
         props.onCardClick()
         e.stopPropagation()
     }
