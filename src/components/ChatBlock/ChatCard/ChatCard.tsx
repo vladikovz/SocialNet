@@ -58,7 +58,13 @@ export const ChatCard = (props: IChatCardProps) => {
     return (
         <S.Container onClick={handleCardClick}>
             <S.Avatar onClick={(e) => handleAvatarClick(e)}>
-                <UserAvatar name={'V S'} sizeEm={2} border={2} hover />
+                <UserAvatar
+                    name={'V S'}
+                    size={2.5}
+                    fontSize={16}
+                    border={2}
+                    hover
+                />
             </S.Avatar>
             <S.Photo src={ImgUrl} alt={'Ads picture'} />
             <S.Content>

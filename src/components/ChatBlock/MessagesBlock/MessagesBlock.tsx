@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import { AdsInfo } from './AdsInfo/AdsInfo'
 import { IconButton } from '@mui/material'
@@ -8,7 +8,12 @@ import { ParamsMenu } from '../ParamsMenu/ParamsMenu'
 import { ProfileTabs } from '../../../constants/profileTabs'
 import { useNavigate } from 'react-router-dom'
 import { InputBlock } from './InputBlock/InputBlock'
-import { SampleAds } from '../../../constants/dataFilling'
+import { SampleAds } from '../../../sampleData/dataFilling'
+import { useTypedSelector } from '../../../redux/hooks/useTypedSelector'
+import { useDispatch } from 'react-redux'
+import { AddMessage } from '../../../redux/actions/chatActions'
+import { IMessage } from '../../../redux/reducers/chatReducer'
+import { MessageBlock } from './MessageBlock/MessageBlock'
 
 const PRIMARY_BTN_COLOR = '#7e7e7e'
 const SECONDARY_BTN_COLOR = 'black'
@@ -22,6 +27,8 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
     const [paramsMenuAnchorEl, setParamsMenuAnchorEl] = React.useState(null)
     const [btnColor, setBtnColor] = useState(PRIMARY_BTN_COLOR)
     const navigate = useNavigate()
+    const { messages } = useTypedSelector((store) => store.chat)
+    const dispatch = useDispatch()
 
     const handleParamsMenuItemClick = (path: ProfileTabs) => {
         handleCloseParamsMenu()
@@ -51,6 +58,18 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
 
     const handleCardClick = () => {
         navigate(`/ads/${SampleAds[0].id}`)
+    }
+
+    const setScrollToBottom = () => {
+        const msgBlock = document.getElementById('msgBlock')
+        msgBlock.scrollTo(0, msgBlock.scrollHeight)
+    }
+    useEffect(() => {
+        setScrollToBottom()
+    }, [messages])
+
+    const handleSendMessage = (message: IMessage) => {
+        dispatch(AddMessage(message))
     }
 
     return (
@@ -86,9 +105,13 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
                     />
                 </S.HeaderField__Params>
             </S.HeaderField>
-            <S.MainField></S.MainField>
+            <S.MainField id={'msgBlock'}>
+                {messages.map((msg: IMessage) => (
+                    <MessageBlock key={msg.message} message={msg} />
+                ))}
+            </S.MainField>
             <S.FooterField>
-                <InputBlock />
+                <InputBlock onSendMessage={handleSendMessage} />
             </S.FooterField>
         </S.Container>
     )

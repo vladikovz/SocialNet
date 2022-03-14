@@ -23,7 +23,7 @@ export const AdsInfo = (props: IChatCardProps) => {
     return (
         <S.Container onClick={handleCardClick}>
             <S.Avatar onClick={(e) => handleAvatarClick(e)}>
-                <UserAvatar name={'V S'} sizeEm={1.5} border={2} />
+                <UserAvatar name={'V S'} size={1.5} fontSize={14} border={2} />
             </S.Avatar>
             <S.Photo src={ImgUrl} alt={'Ads picture'} />
             <S.Content>

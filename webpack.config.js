@@ -98,6 +98,15 @@ module.exports = {
                     options: babelOptions('@babel/preset-react'),
                 },
             },
+            {
+                test: /\.svg$/,
+                use: {
+                    loader: 'svg-url-loader',
+                    options: {
+                        encoding: 'base64',
+                    },
+                },
+            },
         ],
     },
 }

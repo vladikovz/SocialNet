@@ -36,6 +36,7 @@ export const HeaderField__Params = styled.div`
 `
 export const MainField = styled.div`
     height: 100%;
+    overflow: auto;
 `
 // export const MainField = styled.div`
 // `

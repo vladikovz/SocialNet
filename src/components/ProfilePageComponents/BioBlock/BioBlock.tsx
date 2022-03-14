@@ -8,7 +8,9 @@ export const BioBlock = () => {
     const { login } = useTypedSelector((store) => store.user)
     return (
         <S.Container>
-            <UserAvatar name={'vl '} sizeEm={4} />
+            <S.Avatar>
+                <UserAvatar name={'A S'} size={3} fontSize={25} />
+            </S.Avatar>
             <S.Name>{login ?? 'noName'}</S.Name>
             <RatingStars />
         </S.Container>

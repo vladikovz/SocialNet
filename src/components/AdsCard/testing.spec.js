@@ -1,6 +1,6 @@
 import React from 'react'
 import { AdsCard } from './AdsCard'
-import { SampleAds } from '../../constants/dataFilling'
+import { SampleAds } from '../../sampleData/dataFilling'
 import { Container, DateInfo, MainInfo } from './styles'
 import moment from 'moment'
 

@@ -4,7 +4,8 @@ import { stringToColor } from '../../utils/stringToColor'
 
 type IUserAvatarProps = {
     name: string
-    sizeEm: number
+    size: number
+    fontSize: number
     border?: 1 | 2 | 3
     hover?: boolean
 }
@@ -12,12 +13,12 @@ type IUserAvatarProps = {
 function avatarProps(props: IUserAvatarProps) {
     return {
         sx: {
-            fontSize: '1.25em',
+            fontSize: `${props.fontSize}px`,
+            padding: '3px',
             transition: 'all .05s',
             backgroundColor: stringToColor(props.name),
-            width: `${props.sizeEm}em`,
-            height: `${props.sizeEm}em`,
-            marginBottom: 1,
+            width: `${props.size}em`,
+            height: `${props.size}em`,
             border: props.border ? `white solid ${props.border}px` : undefined,
             '&:hover': props.hover
                 ? {
