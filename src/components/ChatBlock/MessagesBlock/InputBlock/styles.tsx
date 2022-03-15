@@ -14,4 +14,9 @@ export const AddBtn = styled.div`
 `
 export const Input = styled(TextField)`
     width: 100%;
+    & .MuiOutlinedInput-root {
+        & fieldset {
+            border: none;
+        }
+    }
 `
