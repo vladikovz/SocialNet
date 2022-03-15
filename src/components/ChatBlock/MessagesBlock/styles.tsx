@@ -37,6 +37,7 @@ export const HeaderField__Params = styled.div`
 export const MainField = styled.div`
     height: 100%;
     overflow: auto;
+    cursor: default;
 `
 // export const MainField = styled.div`
 // `

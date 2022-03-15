@@ -5,6 +5,7 @@ import SendIcon from '@mui/icons-material/Send'
 import AddIcon from '@mui/icons-material/Add'
 import { IMessage } from '../../../../redux/reducers/chatReducer'
 import { testUser } from '../../../../sampleData/dataFilling'
+import { v4 as uuid } from 'uuid'
 
 interface InputBlock {
     onSendMessage: (message: IMessage) => void
@@ -25,6 +26,7 @@ export const InputBlock = (props: InputBlock) => {
                 time: new Date(),
                 message: inputValue,
                 userId: testUser.id,
+                id: uuid(),
             }
             props.onSendMessage(message)
             setInputValue('')

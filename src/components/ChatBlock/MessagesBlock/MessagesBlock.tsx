@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux'
 import { AddMessage } from '../../../redux/actions/chatActions'
 import { IMessage } from '../../../redux/reducers/chatReducer'
 import { MessageBlock } from './MessageBlock/MessageBlock'
+import { CHAT_PARAMS_MENU_ITEMS } from '../../../constants/paramsMenu'
 
 const PRIMARY_BTN_COLOR = '#7e7e7e'
 const SECONDARY_BTN_COLOR = 'black'
@@ -102,12 +103,13 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
                         isOpen={isOpenParamsMenu}
                         onClose={handleCloseParamsMenu}
                         anchorEl={paramsMenuAnchorEl}
+                        items={CHAT_PARAMS_MENU_ITEMS}
                     />
                 </S.HeaderField__Params>
             </S.HeaderField>
             <S.MainField id={'msgBlock'}>
                 {messages.map((msg: IMessage) => (
-                    <MessageBlock key={msg.message} message={msg} />
+                    <MessageBlock key={msg.id} message={msg} />
                 ))}
             </S.MainField>
             <S.FooterField>

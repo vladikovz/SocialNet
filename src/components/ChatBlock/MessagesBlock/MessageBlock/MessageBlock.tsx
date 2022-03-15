@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from './styles'
 import moment from 'moment'
 import { IMessage } from '../../../../redux/reducers/chatReducer'
 import { testUser } from '../../../../sampleData/dataFilling'
 import { UserAvatar } from '../../../UserAvatar/UserAvatar'
+import { ParamsMenu } from '../../ParamsMenu/ParamsMenu'
+import { IParamsMenuItem } from '../../../../Interfaces/IParamsMenuItem'
+import { useDispatch } from 'react-redux'
+import { DelMessage } from '../../../../redux/actions/chatActions'
 
 interface IMessageBlockProps {
     message: IMessage
@@ -11,20 +15,69 @@ interface IMessageBlockProps {
 
 export const MessageBlock = (props: IMessageBlockProps) => {
     const currentPerson: boolean = props.message.userId === testUser.id
-    return currentPerson ? (
-        <S.Container position={'right'}>
-            <S.Text>
-                {props.message.message}{' '}
-                <S.Time>{moment(props.message.time).format('LT')}</S.Time>
-            </S.Text>
-        </S.Container>
-    ) : (
-        <S.Container position={'left'}>
-            <S.Text>
-                {props.message.message}
-                <S.Time>{moment(props.message.time).format('LT')}</S.Time>
-            </S.Text>
-            <UserAvatar name={'S D'} size={2} fontSize={12} border={2} />
-        </S.Container>
+
+    const [isOpenParamsMenu, setIsOpenParamsMenu] = useState(false)
+    const [paramsMenuAnchorEl, setParamsMenuAnchorEl] = React.useState(null)
+    const dispatch = useDispatch()
+
+    const handleCloseParamsMenu = (e?: React.MouseEvent<HTMLDivElement>) => {
+        setIsOpenParamsMenu(false)
+        if (e) {
+            e.stopPropagation()
+        }
+    }
+
+    const MESSAGE_PARAMS_MENU_ITEMS: IParamsMenuItem[] = [
+        {
+            name: 'Delete',
+            onClick: () => handleDelBtnClick(),
+        },
+    ]
+
+    const handleDelBtnClick = () => {
+        dispatch(DelMessage(props.message.id))
+        setIsOpenParamsMenu(false)
+    }
+
+    const handleClickMessageBtn = (event: React.MouseEvent<HTMLDivElement>) => {
+        setParamsMenuAnchorEl(event.currentTarget)
+        setIsOpenParamsMenu(true)
+        event.stopPropagation()
+    }
+
+    return (
+        <>
+            {currentPerson ? (
+                <S.Container position={'right'}>
+                    <S.Text onClick={handleClickMessageBtn}>
+                        {props.message.message}{' '}
+                        <S.Time>
+                            {moment(props.message.time).format('LT')}
+                        </S.Time>
+                    </S.Text>
+                </S.Container>
+            ) : (
+                <S.Container position={'left'}>
+                    <S.Text onClick={handleClickMessageBtn}>
+                        {props.message.message}
+                        <S.Time>
+                            {moment(props.message.time).format('LT')}
+                        </S.Time>
+                    </S.Text>
+                    <UserAvatar
+                        name={'S D'}
+                        size={2}
+                        fontSize={12}
+                        border={2}
+                    />
+                </S.Container>
+            )}
+            <ParamsMenu
+                isOpen={isOpenParamsMenu}
+                onClose={handleCloseParamsMenu}
+                anchorEl={paramsMenuAnchorEl}
+                items={MESSAGE_PARAMS_MENU_ITEMS}
+            />
+        </>
     )
 }

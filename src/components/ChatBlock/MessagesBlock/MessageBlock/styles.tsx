@@ -26,6 +26,7 @@ export const Text = styled.div`
     display: flex;
     align-items: center;
     border-radius: 7px;
+    cursor: pointer;
 `
 
 export const Time = styled.div`

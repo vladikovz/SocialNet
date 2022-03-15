@@ -10,6 +10,7 @@ export interface IMessage {
     time: Date
     message: string
     userId: string
+    id: string
 }
 
 export interface IChatStore {
@@ -44,35 +45,45 @@ const initialStore: IChatStore = {
             time: new Date(),
             message: 'Hello, maan!',
             userId: Elena.id,
+            id: 'sdasa',
         },
         {
             time: new Date(),
             message: 'Hello, maan!',
             userId: Vlad.id,
+            id: 'sdasaasdas',
         },
         {
             time: new Date(),
             message: 'Hello, maan!',
             userId: Vlad.id,
+            id: 'sd34234asa',
         },
         {
             time: new Date(),
             message: 'Hello, maan!',
             userId: Elena.id,
+            id: 'sdasa344',
         },
         {
             time: new Date(),
             message: 'Hello, maan!',
             userId: Vlad.id,
+            id: 'sda278sa',
         },
     ],
 }
 
 export const chatReducer = (store = initialStore, action: IChatAction) => {
-    const messages = JSON.parse(JSON.stringify(store.messages))
-    messages.push(action.payload)
+    let messages = [...store.messages]
     switch (action.type) {
         case ChatActionTypes.ADD_MESSAGE:
+            messages.push(action.payload)
+            return { ...store, messages }
+        case ChatActionTypes.DEL_MESSAGE:
+            messages = messages.filter(
+                (item: any) => item.id !== action.payload
+            )
             return { ...store, messages }
         default:
             return store

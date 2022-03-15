@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { IParams__btnProps } from './styles'
 import moment from 'moment'
 import { UserAvatar } from '../../UserAvatar/UserAvatar'
+import { CHAT_PARAMS_MENU_ITEMS } from '../../../constants/paramsMenu'
 const ImgUrl =
     'https://cdn.pixabay.com/photo/2016/10/12/02/27/denali-national-park-1733313_1280.jpg'
 
@@ -98,6 +99,7 @@ export const ChatCard = (props: IChatCardProps) => {
                     isOpen={isOpenParamsMenu}
                     onClose={handleCloseParamsMenu}
                     anchorEl={paramsMenuAnchorEl}
+                    items={CHAT_PARAMS_MENU_ITEMS}
                 />
             </S.Params>
         </S.Container>
