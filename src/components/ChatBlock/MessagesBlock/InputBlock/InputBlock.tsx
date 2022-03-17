@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as S from './styles'
 import { IconButton, InputAdornment } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
@@ -13,23 +13,39 @@ interface InputBlock {
 
 export const InputBlock = (props: InputBlock) => {
     const [inputValue, setInputValue] = useState<string>('')
+    const syncInputValue = useRef('')
+    useEffect(() => {
+        document.addEventListener('keydown', (e) => handleEnterPress(e))
+        return () => {
+            document.removeEventListener('keydown', (e) => handleEnterPress(e))
+        }
+    })
+
+    const handleEnterPress = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            handleSendBtnClick()
+            event.preventDefault()
+        }
+    }
 
     const handleInputValueChange = (
         e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     ) => {
+        syncInputValue.current = e.target.value
         setInputValue(e.target.value)
     }
 
     const handleSendBtnClick = () => {
-        if (inputValue !== '') {
+        if (syncInputValue.current !== '') {
             const message: IMessage = {
                 time: new Date(),
-                message: inputValue,
+                message: syncInputValue.current,
                 userId: testUser.id,
                 id: uuid(),
             }
             props.onSendMessage(message)
             setInputValue('')
+            syncInputValue.current = ''
         }
     }
 
