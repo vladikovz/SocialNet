@@ -16,3 +16,7 @@ export const Name = styled.div`
     text-transform: capitalize;
     font-size: 18px;
 `
+
+export const Avatar = styled.div`
+    margin-bottom: 10px;
+`

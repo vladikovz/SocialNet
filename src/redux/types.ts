@@ -23,6 +23,11 @@ export enum UserActionTypes {
     SET_EMAIL = 'SET_EMAIL',
 }
 
+export enum ChatActionTypes {
+    ADD_MESSAGE = 'ADD_MESSAGE',
+    DEL_MESSAGE = 'DEL_MESSAGE',
+}
+
 interface ILoginAction {
     type: ServiceActionTypes.LOG_IN
     payload: number
@@ -35,3 +40,4 @@ export type PostActionType = PostActionTypes
 export type AdsActionType = AdsActionTypes
 
 export type UserActionType = UserActionTypes
+export type ChatActionType = ChatActionTypes

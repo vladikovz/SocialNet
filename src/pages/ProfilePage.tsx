@@ -14,6 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { IProfileTabsValue } from '../Interfaces/IProfileTabsValue'
 import { ProfileTabs } from '../constants/profileTabs'
 import { SettingsBlock } from '../components/SettingsBlock/SettingsBlock'
+import { ChatBlock } from '../components/ChatBlock/ChatBlock'
 
 const Item = styled.div`
     display: flex;
@@ -82,7 +83,11 @@ export const ProfilePage = () => {
                     </Item>
                 )
             case ProfileTabs.chat:
-                return <Item>Chat</Item>
+                return (
+                    <Item>
+                        <ChatBlock />
+                    </Item>
+                )
             case ProfileTabs.notifications:
                 return <Item>Notifications</Item>
             case ProfileTabs.favorite:

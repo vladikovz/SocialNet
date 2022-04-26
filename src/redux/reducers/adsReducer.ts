@@ -1,6 +1,6 @@
 import { AdsActionType, AdsActionTypes } from '../types'
 import { IAds } from '../../Interfaces/IAds'
-import { SampleAds } from '../../constants/dataFilling'
+import { SampleAds } from '../../sampleData/dataFilling'
 
 export interface IAdsAction {
     type: AdsActionType

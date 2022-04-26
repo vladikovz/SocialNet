@@ -1,5 +1,5 @@
 import { UserActionType, UserActionTypes } from '../types'
-import { testUser } from '../../constants/dataFilling'
+import { testUser } from '../../sampleData/dataFilling'
 
 export interface IUserAction {
     type: UserActionType
@@ -11,6 +11,7 @@ export interface IUserStore {
     password: string
     email: string
     phone: string
+    id: string
 }
 
 const initialStore: IUserStore = testUser

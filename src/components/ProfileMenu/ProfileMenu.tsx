@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton, Menu, MenuItem } from '@mui/material'
+import { Badge, IconButton, Menu, MenuItem } from '@mui/material'
 import Fade from '@mui/material/Fade'
 import { AccountCircle } from '@mui/icons-material'
 import { RatingStars } from '../RatingStars/RatingStars'
@@ -16,7 +16,11 @@ export const ProfileMenu = (props: IProfileMenu) => {
     const open = Boolean(anchorEl)
     const navigate = useNavigate()
 
-    const handleClick = (event: any) => {
+    const handleClick = (
+        event:
+            | React.MouseEvent<HTMLAnchorElement>
+            | React.MouseEvent<HTMLButtonElement>
+    ) => {
         setAnchorEl(event.currentTarget)
     }
 
@@ -60,7 +64,11 @@ export const ProfileMenu = (props: IProfileMenu) => {
                     My ads
                 </MenuItem>
                 <MenuItem>Favorite</MenuItem>
-                <MenuItem>Chat</MenuItem>
+                <MenuItem onClick={() => handleItemClick(ProfileTabs.chat)}>
+                    <Badge color="secondary" badgeContent={99}>
+                        Chat
+                    </Badge>
+                </MenuItem>
                 <MenuItem onClick={() => handleItemClick(ProfileTabs.settings)}>
                     Settings
                 </MenuItem>
