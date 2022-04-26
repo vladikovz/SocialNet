@@ -5,6 +5,7 @@ import { Header } from './src/components/Header/Header'
 import { RoutesList } from './src/Routes/Routes'
 import { Provider } from 'react-redux'
 import { store } from './src/redux/store'
+import styles from './App.module.css'
 
 export const App = () => {
     const darkTheme = createTheme({
@@ -19,10 +20,12 @@ export const App = () => {
         <>
             <Provider store={store}>
                 <ThemeProvider theme={darkTheme}>
-                    <BrowserRouter>
-                        <Header />
-                        <Routes>{RoutesList.map((route) => route)}</Routes>
-                    </BrowserRouter>
+                    <div className={styles.container}>
+                        <BrowserRouter>
+                            <Header />
+                            <Routes>{RoutesList.map((route) => route)}</Routes>
+                        </BrowserRouter>
+                    </div>
                 </ThemeProvider>
             </Provider>
         </>
