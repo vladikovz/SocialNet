@@ -1,7 +1,10 @@
 import { IServiceAction } from '../reducers/serviceReducer'
 import { ServiceActionTypes } from '../types'
 
-export const setLogin = (payload: boolean): IServiceAction => ({
-    type: ServiceActionTypes.LOG_IN,
+export const setServiceLogin = (payload: {
+    isLogin: boolean
+    login: string
+}): IServiceAction => ({
+    type: ServiceActionTypes.LOGIN,
     payload,
 })

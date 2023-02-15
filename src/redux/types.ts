@@ -1,6 +1,5 @@
 export enum ServiceActionTypes {
-    LOG_IN = 'LOG_IN',
-    SET_INPUT = 'SET_INPUT',
+    LOGIN = 'LOGIN',
 }
 
 export enum PostActionTypes {
@@ -26,11 +25,6 @@ export enum UserActionTypes {
 export enum ChatActionTypes {
     ADD_MESSAGE = 'ADD_MESSAGE',
     DEL_MESSAGE = 'DEL_MESSAGE',
-}
-
-interface ILoginAction {
-    type: ServiceActionTypes.LOG_IN
-    payload: number
 }
 
 export type ServiceActionType = ServiceActionTypes

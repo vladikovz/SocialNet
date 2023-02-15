@@ -14,7 +14,7 @@ interface IAuthDialogProps {
     title: string
     isOpen: boolean
     handleClose: () => void
-    onSubmit: () => void
+    onSubmit: (login: string) => void
 }
 
 export const AuthDialog = (props: IAuthDialogProps) => {
@@ -38,12 +38,17 @@ export const AuthDialog = (props: IAuthDialogProps) => {
         setVisible((prevState) => !prevState)
     }
 
+    const handleSubmit = () => {
+        props.onSubmit(login)
+    }
+
     return (
         <S.CustomDialog onClose={props.handleClose} open={props.isOpen}>
             <DialogTitle>{props.title}</DialogTitle>
             <FormControl fullWidth variant="standard">
                 <p>Login</p>
                 <OutlinedInput
+                    error={!login} // need to add normal validation
                     id="login"
                     value={login}
                     onChange={handleLoginChange}
@@ -77,7 +82,8 @@ export const AuthDialog = (props: IAuthDialogProps) => {
             <Button
                 sx={{ margin: '10px' }}
                 color={'secondary'}
-                onClick={props.onSubmit}
+                onClick={handleSubmit}
+                disabled={!login} // need to add normal validation
             >
                 Submit
             </Button>

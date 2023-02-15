@@ -1,16 +1,18 @@
 import { ServiceActionType, ServiceActionTypes } from '../types'
 
-export interface IServiceAction {
-    type: ServiceActionType
-    payload?: any
+interface IServiceStore {
+    isLogin: boolean
+    login: string | null
 }
 
-interface IServiceStore {
-    login: boolean
+export interface IServiceAction {
+    type: ServiceActionType
+    payload?: IServiceStore
 }
 
 const initialStore: IServiceStore = {
-    login: false,
+    isLogin: false,
+    login: null,
 }
 
 export const serviceReducer = (
@@ -18,8 +20,8 @@ export const serviceReducer = (
     action: IServiceAction
 ): IServiceStore => {
     switch (action.type) {
-        case ServiceActionTypes.LOG_IN:
-            return { ...store, login: action.payload }
+        case ServiceActionTypes.LOGIN:
+            return { ...store, ...action.payload }
         default:
             return store
     }

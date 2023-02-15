@@ -6,13 +6,14 @@ import { AuthDialog } from '../AuthDialog/AuthDialog'
 import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setLogin } from '../../redux/actions/serviceActions'
+import { setServiceLogin } from '../../redux/actions/serviceActions'
 import { CreateAdsDialog } from '../CreateAdsDialog/CreateAdsDialog'
 import * as S from './style'
+import { SetLogin } from '../../redux/actions/userActions'
 
 export const Header = () => {
     const dispatch = useDispatch()
-    const { login } = useTypedSelector((store) => store.serve)
+    const { isLogin } = useTypedSelector((store) => store.serve)
     const [isLoginDialog, setIsLoginDialog] = useState(false)
     const [isCreateDialog, setIsCreateDialog] = useState(false)
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ export const Header = () => {
         setIsLoginDialog(true)
     }
     const handleCreateBtnClick = () => {
-        if (!login) {
+        if (!isLogin) {
             setIsLoginDialog(true)
         } else {
             setIsCreateDialog(true)
@@ -35,8 +36,9 @@ export const Header = () => {
         setIsCreateDialog(false)
     }
 
-    const handleLoginSubmit = () => {
-        dispatch(setLogin(true))
+    const handleLoginSubmit = (login: string) => {
+        dispatch(setServiceLogin({ isLogin: true, login }))
+        dispatch(SetLogin(login))
         handleLoginDialogClose()
     }
     const handleCreateSubmit = () => {
@@ -44,7 +46,8 @@ export const Header = () => {
     }
 
     const handleLogout = () => {
-        dispatch(setLogin(false))
+        dispatch(setServiceLogin({ isLogin: false, login: '' }))
+        dispatch(SetLogin(''))
         navigate('main')
     }
 
@@ -63,8 +66,8 @@ export const Header = () => {
                         </S.HeaderButton>
                     </S.CenterBtn>
                     <S.Navigation>
-                        <Navigation login={login} />
-                        {login ? (
+                        <Navigation login={isLogin} />
+                        {isLogin ? (
                             <ProfileMenu onLogoutClick={handleLogout} />
                         ) : (
                             <S.HeaderButton onClick={handleLoginBtnClick}>
