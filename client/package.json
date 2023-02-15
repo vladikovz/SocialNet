@@ -6,8 +6,8 @@
     "scripts": {
         "build": "webpack",
         "start": "webpack serve --mode development",
-        "lint": "eslint --fix ./src ",
-        "prettier": "prettier --write ./src",
+        "lint": "eslint --fix src ",
+        "prettier": "prettier --write src",
         "test": "jest",
         "test:upgrade": "jest -u",
         "test:watch": "jest --watch",
