@@ -10,17 +10,17 @@ import { useNavigate } from 'react-router-dom'
 import { InputBlock } from './InputBlock/InputBlock'
 import { SampleAds } from '../../../sampleData/dataFilling'
 import { useTypedSelector } from '../../../redux/hooks/useTypedSelector'
-import { useDispatch } from 'react-redux'
-import { AddMessage } from '../../../redux/actions/chatActions'
 import { IMessage } from '../../../redux/reducers/chatReducer'
 import { MessageBlock } from './MessageBlock/MessageBlock'
 import { CHAT_PARAMS_MENU_ITEMS } from '../../../constants/paramsMenu'
+import useWebSocketChat from '../../../hooks/useWebSocketChat'
 
 const PRIMARY_BTN_COLOR = '#7e7e7e'
 const SECONDARY_BTN_COLOR = 'black'
 
 interface IMessagesBlockProps {
     onBtnBackClick: () => void
+    recipient: string
 }
 
 export const MessagesBlock = (props: IMessagesBlockProps) => {
@@ -28,8 +28,9 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
     const [paramsMenuAnchorEl, setParamsMenuAnchorEl] = React.useState(null)
     const [btnColor, setBtnColor] = useState(PRIMARY_BTN_COLOR)
     const navigate = useNavigate()
-    const { messages } = useTypedSelector((store) => store.chat)
-    const dispatch = useDispatch()
+    const { login } = useTypedSelector((store) => store.serve)
+
+    const { messages, sendMessage } = useWebSocketChat(login, props.recipient)
 
     const handleParamsMenuItemClick = (path: ProfileTabs) => {
         handleCloseParamsMenu()
@@ -69,8 +70,8 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
         setScrollToBottom()
     }, [messages])
 
-    const handleSendMessage = (message: IMessage) => {
-        dispatch(AddMessage(message))
+    const handleSendMessage = (mes: IMessage) => {
+        sendMessage(mes.message)
     }
 
     return (
@@ -113,7 +114,10 @@ export const MessagesBlock = (props: IMessagesBlockProps) => {
                 ))}
             </S.MainField>
             <S.FooterField>
-                <InputBlock onSendMessage={handleSendMessage} />
+                <InputBlock
+                    onSendMessage={handleSendMessage}
+                    userName={login}
+                />
             </S.FooterField>
         </S.Container>
     )

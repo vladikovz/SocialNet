@@ -2,20 +2,20 @@ import React, { useState } from 'react'
 import * as S from './styles'
 import moment from 'moment'
 import { IMessage } from '../../../../redux/reducers/chatReducer'
-import { testUser } from '../../../../sampleData/dataFilling'
 import { UserAvatar } from '../../../UserAvatar/UserAvatar'
 import { ParamsMenu } from '../../ParamsMenu/ParamsMenu'
 import { IParamsMenuItem } from '../../../../Interfaces/IParamsMenuItem'
 import { useDispatch } from 'react-redux'
 import { DelMessage } from '../../../../redux/actions/chatActions'
+import { useTypedSelector } from '../../../../redux/hooks/useTypedSelector'
 
 interface IMessageBlockProps {
     message: IMessage
 }
 
 export const MessageBlock = (props: IMessageBlockProps) => {
-    const currentPerson: boolean = props.message.userId === testUser.id
-
+    const { login } = useTypedSelector((store) => store.serve)
+    const currentPerson: boolean = props.message.sender === login
     const [isOpenParamsMenu, setIsOpenParamsMenu] = useState(false)
     const [paramsMenuAnchorEl, setParamsMenuAnchorEl] = React.useState(null)
     const dispatch = useDispatch()
@@ -65,7 +65,7 @@ export const MessageBlock = (props: IMessageBlockProps) => {
                         </S.Time>
                     </S.Text>
                     <UserAvatar
-                        name={'S D'}
+                        name={props.message?.sender ?? ''}
                         size={2}
                         fontSize={12}
                         border={2}

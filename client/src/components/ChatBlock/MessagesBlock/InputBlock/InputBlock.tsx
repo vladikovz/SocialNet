@@ -4,11 +4,11 @@ import { IconButton, InputAdornment } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
 import AddIcon from '@mui/icons-material/Add'
 import { IMessage } from '../../../../redux/reducers/chatReducer'
-import { testUser } from '../../../../sampleData/dataFilling'
 import { v4 as uuid } from 'uuid'
 
 interface InputBlock {
     onSendMessage: (message: IMessage) => void
+    userName: string
 }
 
 export const InputBlock = (props: InputBlock) => {
@@ -40,7 +40,7 @@ export const InputBlock = (props: InputBlock) => {
             const message: IMessage = {
                 time: new Date(),
                 message: syncInputValue.current,
-                userId: testUser.id,
+                recipient: props.userName,
                 id: uuid(),
             }
             props.onSendMessage(message)

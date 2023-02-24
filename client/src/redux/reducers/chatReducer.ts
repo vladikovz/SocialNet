@@ -1,5 +1,4 @@
 import { ChatActionType, ChatActionTypes } from '../types'
-import { Elena, Vlad } from '../../sampleData/users'
 
 export interface IChatAction {
     type: ChatActionType
@@ -9,7 +8,8 @@ export interface IChatAction {
 export interface IMessage {
     time: Date
     message: string
-    userId: string
+    recipient: string
+    sender?: string
     id: string
 }
 
@@ -41,36 +41,6 @@ const initialStore: IChatStore = {
         //     time: new Date(),
         //     message: 'Hello, maan!',
         // },
-        {
-            time: new Date(),
-            message: 'Hello, maan!',
-            userId: Elena.id,
-            id: 'sdasa',
-        },
-        {
-            time: new Date(),
-            message: 'Hello, maan!',
-            userId: Vlad.id,
-            id: 'sdasaasdas',
-        },
-        {
-            time: new Date(),
-            message: 'Hello, maan!',
-            userId: Vlad.id,
-            id: 'sd34234asa',
-        },
-        {
-            time: new Date(),
-            message: 'Hello, maan!',
-            userId: Elena.id,
-            id: 'sdasa344',
-        },
-        {
-            time: new Date(),
-            message: 'Hello, maan!',
-            userId: Vlad.id,
-            id: 'sda278sa',
-        },
     ],
 }
 

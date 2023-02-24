@@ -4,10 +4,13 @@ import { ChatCard } from './ChatCard/ChatCard'
 import { TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { MessagesBlock } from './MessagesBlock/MessagesBlock'
+import { useTypedSelector } from '../../redux/hooks/useTypedSelector'
 
 export const ChatBlock = () => {
     const [isChat, setIsChat] = useState<boolean>(false)
     const navigate = useNavigate()
+    const { login } = useTypedSelector((store) => store.serve)
+
     const handleChatCardClick = () => {
         setIsChat(true)
     }
@@ -21,7 +24,10 @@ export const ChatBlock = () => {
     return (
         <S.Container>
             {isChat ? (
-                <MessagesBlock onBtnBackClick={handleCloseMessagesBlock} />
+                <MessagesBlock
+                    recipient={login === 'Vlad' ? 'Ivan' : 'Vlad'} //TODO add real users
+                    onBtnBackClick={handleCloseMessagesBlock}
+                />
             ) : (
                 <>
                     <TextField
@@ -35,10 +41,19 @@ export const ChatBlock = () => {
                         type="text"
                         placeholder={'Search...'}
                     />
-                    <ChatCard
-                        onCardClick={handleChatCardClick}
-                        onAvatarClick={handleAvatarClick}
-                    />
+                    {login === 'Vlad' ? (
+                        <ChatCard
+                            // recipient={'Ivan'}
+                            onCardClick={handleChatCardClick}
+                            onAvatarClick={handleAvatarClick}
+                        />
+                    ) : (
+                        <ChatCard
+                            // recipient={'Vlad'}
+                            onCardClick={handleChatCardClick}
+                            onAvatarClick={handleAvatarClick}
+                        />
+                    )}
                 </>
             )}
         </S.Container>

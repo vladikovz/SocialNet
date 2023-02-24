@@ -27,9 +27,7 @@ function avatarProps(props: IUserAvatarProps) {
                   }
                 : undefined,
         },
-        children: `${props.name.split(' ')[0][0] ?? ''}${
-            props.name.split(' ')[1][0] ?? ''
-        }`,
+        children: props.name ? props.name[0] : '',
     }
 }
 
