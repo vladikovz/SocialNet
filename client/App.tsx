@@ -6,6 +6,7 @@ import { RoutesList } from './src/Routes/Routes'
 import { Provider } from 'react-redux'
 import { store } from './src/redux/store'
 import styles from './App.module.css'
+import { ErrorBoundary } from './src/components/ErrorBoundary/ErrorBoundary'
 
 export const App = () => {
     const darkTheme = createTheme({
@@ -17,7 +18,7 @@ export const App = () => {
         },
     })
     return (
-        <>
+        <ErrorBoundary>
             <Provider store={store}>
                 <ThemeProvider theme={darkTheme}>
                     <div className={styles.container}>
@@ -28,6 +29,6 @@ export const App = () => {
                     </div>
                 </ThemeProvider>
             </Provider>
-        </>
+        </ErrorBoundary>
     )
 }
