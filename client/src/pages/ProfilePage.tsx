@@ -34,12 +34,16 @@ export const ProfilePage = () => {
         params.tab ? params.tab : ProfileTabs.myAds
     )
     const navigate = useNavigate()
+    const { adsList } = useTypedSelector((store) => store.ads)
+    const { isLogin } = useTypedSelector((store) => store.serve)
 
     useEffect(() => {
         setTabValue(params.tab ? params.tab : ProfileTabs.myAds)
-    }, [params])
 
-    const { adsList } = useTypedSelector((store) => store.ads)
+        if (!isLogin) {
+            navigate('/main')
+        }
+    }, [params])
 
     const handleClick = () => {
         dispatch(fetchAds())
